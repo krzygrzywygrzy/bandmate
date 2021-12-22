@@ -13,9 +13,9 @@ test('loading should be true when action is "load"', () => {
 
 test('should return data when action is "loaded"', () => {
     const previousState = { loading: true };
-    expect(reducer(previousState, loaded({}))).toEqual({
+    expect(reducer(previousState, loaded({ id: 1, name: "name", surname: "surname" }))).toEqual({
         loading: false,
-        data: {}
+        data: { id: 1, name: "name", surname: "surname" }
     });
 });
 
