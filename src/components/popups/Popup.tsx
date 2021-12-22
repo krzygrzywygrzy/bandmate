@@ -1,7 +1,11 @@
 import React from "react";
 
-const Popup: React.FC = () => {
-  return <div></div>;
+interface Props {
+  trigger?: boolean;
+}
+
+const Popup: React.FC<Props> = ({ trigger, children }) => {
+  return trigger ? <div className="popup">{children}</div> : <></>;
 };
 
 export default Popup;

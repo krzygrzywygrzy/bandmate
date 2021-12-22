@@ -31,3 +31,8 @@ code {
   transition: font-size 0.25s ease-in-out;
   @apply hover:text-lg cursor-pointer;
 }
+
+.popup {
+  background: rgba(0, 0, 0, 0.2);
+  @apply fixed top-0 left-0 w-full h-full flex justify-center items-center z-50;
+}

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "wouter";
+import Popup from "../../components/popups/Popup";
 
 const Welcome: React.FC = () => {
+  const [loginPopup, setLoginPopup] = useState<boolean>(false);
+
   return (
     <div className="site-container">
       <header className="my-16 xl:my-32">
@@ -11,11 +15,17 @@ const Welcome: React.FC = () => {
         </span>
       </header>
       <main className="flex items-center">
-        <div className="purple-button">Join</div>
+        <Link href="/register">
+          <div className="purple-button">Join</div>
+        </Link>
         <div>
-          or <span className="welcome-login">Log in</span>
+          or{" "}
+          <span className="welcome-login" onClick={() => setLoginPopup(true)}>
+            Log in
+          </span>
         </div>
       </main>
+      <Popup trigger={loginPopup}></Popup>
     </div>
   );
 };

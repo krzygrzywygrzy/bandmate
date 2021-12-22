@@ -1,8 +1,11 @@
 import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
+import Popup from "../popups/Popup";
 
 const Navbar: React.FC = () => {
+  const [loginPopup, setLoginPopup] = useState<boolean>(false);
+
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   useEffect(() => {
     if (Cookies.get("auth") === undefined) {
@@ -21,16 +24,20 @@ const Navbar: React.FC = () => {
         {authenticated ? (
           <div>account</div>
         ) : (
-          <div>
-            <Link href="/login" className="mr-2">
+          <div className="flex">
+            <div
+              className="mr-2 cursor-pointer"
+              onClick={() => setLoginPopup(true)}
+            >
               Log in
-            </Link>
+            </div>
             <Link href="/register" className="font-semibold">
               Register
             </Link>
           </div>
         )}
       </div>
+      <Popup trigger={loginPopup}></Popup>
     </div>
   );
 };
