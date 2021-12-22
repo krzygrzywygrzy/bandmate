@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import Navbar from "../components/layout/Navbar";
 import { store } from "../store/store";
-import Home from "./home/Home";
+import { Route } from "wouter";
+import Welcome from "./welcome/Welcome";
 
 const Router: React.FC = () => {
   return (
     <Provider store={store}>
       <Navbar />
-      <Home />
+      <Route path="/">
+        <Welcome />
+      </Route>
     </Provider>
   );
 };
