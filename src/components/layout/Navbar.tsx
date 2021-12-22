@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
   });
 
   return (
-    <div>
+    <div className="flex justify-between">
       <div>
         <Link href="/">BandMate</Link>
       </div>
