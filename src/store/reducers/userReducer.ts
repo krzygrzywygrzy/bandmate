@@ -17,11 +17,10 @@ export const userSlice = createSlice({
     reducers: {
         load: state => { return { loading: true } },
         loaded: (state, action: PayloadAction<User>) => {
-            //TODO: implement
-            console.log("loaded");
+            return { loading: false, data: action.payload };
         },
         error: (state, action: PayloadAction<any>) => {
-            //TODO: implement
+            return { loading: false, error: {} }
         },
         cancel: state => { return { loading: false } }
     }
