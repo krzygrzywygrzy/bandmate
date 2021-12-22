@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -14,4 +15,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.site-container {
+  margin: auto;
+  @apply 2xl:w-siteWidth2xl xl:w-siteWidthxl lg:w-siteWithLarge md:w-siteWithMedium px-4 md:px-0;
+}
+
+.purple-button {
+  transition: background 0.25s ease-in-out;
+  @apply bg-purple-600 py-2 px-4 text-white w-72 text-center mr-4 font-semibold hover:bg-purple-800 cursor-pointer;
+}
+
+.welcome-login {
+  transition: font-size 0.25s ease-in-out;
+  @apply hover:text-lg cursor-pointer;
 }

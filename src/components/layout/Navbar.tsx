@@ -11,9 +11,11 @@ const Navbar: React.FC = () => {
   });
 
   return (
-    <div className="flex justify-between mx-32">
+    <div className="flex justify-between site-container py-4">
       <div>
-        <Link href="/">BandMate</Link>
+        <Link href="/" className="font-semibold text-purple-600">
+          BandMate
+        </Link>
       </div>
       <div>
         {authenticated ? (
@@ -23,7 +25,9 @@ const Navbar: React.FC = () => {
             <Link href="/login" className="mr-2">
               Log in
             </Link>
-            <Link href="/register">Register</Link>
+            <Link href="/register" className="font-semibold">
+              Register
+            </Link>
           </div>
         )}
       </div>
