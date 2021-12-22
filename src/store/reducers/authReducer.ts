@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
-    name?: string;
+    data?: any;
+    error?: any;
     loading: boolean;
 }
 
@@ -13,10 +14,18 @@ export const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        load: state => { return { loading: true } }
+        load: state => { return { loading: true } },
+        loaded: (state, action: PayloadAction<any>) => {
+            //TODO: implement
+            console.log("loaded");
+        },
+        error: (state, action: PayloadAction<any>) => {
+            //TODO: implement
+        },
+        cancel: state => { return { loading: false } }
     }
 });
 
-export const { load } = authSlice.actions;
+export const { load, loaded, error, cancel } = authSlice.actions;
 
 export default authSlice.reducer;
