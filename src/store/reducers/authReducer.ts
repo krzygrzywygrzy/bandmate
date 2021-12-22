@@ -13,7 +13,7 @@ export const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        load: state => { loading: true }
+        load: state => { return { loading: true } }
     }
 });
 
