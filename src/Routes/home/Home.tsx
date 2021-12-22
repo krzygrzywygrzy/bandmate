@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { load } from "../../store/reducers/authReducer";
+import { load } from "../../store/reducers/userReducer";
 
 const Home: React.FC = () => {
-  const auth = useAppSelector((state) => state.auth);
+  const auth = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
