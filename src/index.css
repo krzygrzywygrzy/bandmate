@@ -36,3 +36,17 @@ code {
   background: rgba(0, 0, 0, 0.2);
   @apply fixed top-0 left-0 w-full h-full flex justify-center items-center z-50;
 }
+
+.text-input {
+  transition: border-color 0.25s ease-in-out;
+  @apply w-full px-4 py-2 focus:outline-none border-2 border-black focus:border-purple-600 text-sm rounded;
+}
+
+.icon-button {
+  transition: background 0.25s ease-in-out;
+  @apply cursor-pointer hover:bg-gray-300 rounded;
+}
+
+.black-button {
+  @apply cursor-pointer px-4 py-2 bg-black my-2 rounded text-white text-center;
+}

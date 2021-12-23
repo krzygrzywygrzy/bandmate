@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "wouter";
+import Login from "../../components/auth/Login";
 import Popup from "../../components/popups/Popup";
+import { IoCloseOutline } from "react-icons/io5";
 
 const Welcome: React.FC = () => {
   const [loginPopup, setLoginPopup] = useState<boolean>(false);
@@ -25,7 +27,16 @@ const Welcome: React.FC = () => {
           </span>
         </div>
       </main>
-      <Popup trigger={loginPopup}></Popup>
+      <Popup trigger={loginPopup}>
+        <div className="bg-white p-4 w-96 shadow rounded">
+          <div className="flex justify-end ">
+            <div className="icon-button" onClick={() => setLoginPopup(false)}>
+              <IoCloseOutline size={24} />
+            </div>
+          </div>
+          <Login />
+        </div>
+      </Popup>
     </div>
   );
 };
