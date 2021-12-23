@@ -2,15 +2,16 @@ import { AnyAction, ThunkAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { load, loaded, error } from "../reducers/userReducer";
 import { supabase, supabaseTables } from "../../supabaseClient";
+import LoginData from "../../models/auth/LoginData";
 
 
-export const thunkLogIn = (email: string, password: string):
+export const thunkLogIn = (data: LoginData):
     ThunkAction<void, RootState, unknown, AnyAction> => {
     return async (
         dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
         try {
             dispatch({ type: load });
-            const { user, error } = await supabase.auth.signIn({ email, password });
+            const { user, error } = await supabase.auth.signIn({ ...data });
             if (user) {
                 //get data from supabase
                 let { error, data } =
