@@ -5,6 +5,8 @@ import { useLocation } from "wouter";
 import { useForm, SubmitHandler } from "react-hook-form";
 import LoginData from "../../models/auth/LoginData";
 
+//TODO: display info about errors in inputs
+
 const Login: React.FC = () => {
   const [, setLocation] = useLocation();
   const user = useAppSelector((state) => state.user);
@@ -17,8 +19,8 @@ const Login: React.FC = () => {
     if (user.data) setLocation("/home");
   }, [user]);
 
-  const handleLogIn: SubmitHandler<LoginData> = (data) =>
-    dispatch(thunkLogIn(data));
+  const handleLogIn: SubmitHandler<LoginData> = (data) => {};
+  //dispatch(thunkLogIn(data));
 
   return (
     <div>

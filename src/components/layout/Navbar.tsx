@@ -6,6 +6,7 @@ import Popup from "../popups/Popup";
 
 const Navbar: React.FC = () => {
   const [loginPopup, setLoginPopup] = useState<boolean>(false);
+
   return (
     <div className="flex justify-between site-container py-4">
       <div>
@@ -21,7 +22,7 @@ const Navbar: React.FC = () => {
           >
             Log in
           </div>
-          <Link href="/register" className="font-semibold">
+          <Link href="/join" className="font-semibold">
             Register
           </Link>
         </div>

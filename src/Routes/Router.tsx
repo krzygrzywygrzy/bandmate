@@ -4,15 +4,19 @@ import Navbar from "../components/layout/Navbar";
 import { store } from "../store/store";
 import { Route } from "wouter";
 import Welcome from "./welcome/Welcome";
+import Register from "./auth/Register";
 
 const Router: React.FC = () => {
   return (
-    <Provider store={store}>
+    <div>
       <Navbar />
       <Route path="/">
         <Welcome />
       </Route>
-    </Provider>
+      <Route path="/join">
+        <Register />
+      </Route>
+    </div>
   );
 };
 

@@ -17,7 +17,7 @@ const Welcome: React.FC = () => {
         </span>
       </header>
       <main className="flex items-center">
-        <Link href="/register">
+        <Link href="/join">
           <div className="purple-button">Join</div>
         </Link>
         <div>

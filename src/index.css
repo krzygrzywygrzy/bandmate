@@ -24,7 +24,7 @@ code {
 
 .purple-button {
   transition: background 0.25s ease-in-out;
-  @apply bg-purple-600 py-2 px-4 text-white w-72 text-center mr-4 font-semibold hover:bg-purple-800 cursor-pointer;
+  @apply bg-purple-600 py-2 px-4 text-white w-72 text-center mr-4 font-semibold hover:bg-purple-800 cursor-pointer rounded;
 }
 
 .welcome-login {
@@ -39,7 +39,12 @@ code {
 
 .text-input {
   transition: border-color 0.25s ease-in-out;
-  @apply w-full px-4 py-2 focus:outline-none border-2 border-black focus:border-purple-600 text-sm rounded;
+  @apply w-full px-4 py-2 focus:outline-none border-2 focus:border-purple-600 text-sm rounded;
+}
+
+.register-text-input {
+  transition: border-color 0.25s ease-in-out;
+  @apply focus:outline-none border-b-2 focus:border-purple-600 px-1 py-1 w-full sm:w-96;
 }
 
 .icon-button {
