@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { supabase } from "../../supabaseClient";
 
 const Home: React.FC = () => {
-  useEffect(() => {}, []);
-
   return (
     <div className="site-container">
-      <header>Welcome {JSON.stringify(supabase.auth.user.toString)}</header>
+      <header className="text-4xl my-12">
+        Welcome {supabase.auth.user()?.user_metadata.name}
+      </header>
     </div>
   );
 };

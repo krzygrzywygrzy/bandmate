@@ -22,8 +22,10 @@ const Login: React.FC<Props> = ({ close }) => {
         password: data.password,
       });
       if (error) throw error;
-      if (close) close();
+
       setLocation("/");
+      if (close) close();
+      window.location.reload();
     } catch (error: any) {
       setErr(error.error_description || error.message);
     } finally {

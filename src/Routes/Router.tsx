@@ -11,7 +11,7 @@ const Router: React.FC = () => {
     <div>
       <Navbar />
       <Route path="/">
-        {supabase.auth.user !== null ? <Home /> : <Welcome />}
+        {supabase.auth.user() !== null ? <Home /> : <Welcome />}
       </Route>
       <Route path="/join">
         <Register />
