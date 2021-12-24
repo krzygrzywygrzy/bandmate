@@ -5,6 +5,7 @@ import Welcome from "./welcome/Welcome";
 import Register from "./auth/Register";
 import { supabase } from "../supabaseClient";
 import Home from "./home/Home";
+import FillProfile from "./profile/FillProfile";
 
 const Router: React.FC = () => {
   return (
@@ -15,6 +16,9 @@ const Router: React.FC = () => {
       </Route>
       <Route path="/join">
         <Register />
+      </Route>
+      <Route path="/fill_profile">
+        <FillProfile />
       </Route>
     </div>
   );
