@@ -59,3 +59,7 @@ code {
 .black-button {
   @apply cursor-pointer px-4 py-2 bg-black my-2 rounded text-white text-center;
 }
+
+.header {
+  @apply my-4 sm:my-8 md:my-12;
+}

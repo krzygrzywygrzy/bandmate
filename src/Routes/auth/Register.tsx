@@ -30,7 +30,7 @@ const Register: React.FC = () => {
 
   return (
     <div className="site-container">
-      <header className="my-12 text-2xl">
+      <header className="header text-2xl">
         <span className="text-purple-600 font-semibold text-5xl">Join </span>{" "}
         BandMate
       </header>
