@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
               <IoCloseOutline size={24} />
             </div>
           </div>
-          <Login />
+          <Login close={() => setLoginPopup(false)} />
         </div>
       </Popup>
     </div>

@@ -10,7 +10,7 @@ const Register: React.FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>();
-  const [successPopup, setSuccessPopup] = useState<boolean>(true);
+  const [successPopup, setSuccessPopup] = useState<boolean>(false);
   const handleRegister: SubmitHandler<RegisterData> = async (data) => {
     try {
       setLoading(true);
@@ -79,7 +79,7 @@ const Register: React.FC = () => {
         </form>
       </main>
       <Popup trigger={successPopup}>
-        <div className="bg-white rounded p-4 w-full md:w-96 mx-4 md:my-0">
+        <div className="bg-white rounded p-4 w-full md:w-96 mx-4 md:my-0 shadow">
           <div className="flex justify-end">
             <div className="icon-button" onClick={() => setSuccessPopup(false)}>
               <IoCloseOutline size={24} />

@@ -5,13 +5,15 @@ import { store } from "../store/store";
 import { Route } from "wouter";
 import Welcome from "./welcome/Welcome";
 import Register from "./auth/Register";
+import { supabase } from "../supabaseClient";
+import Home from "./home/Home";
 
 const Router: React.FC = () => {
   return (
     <div>
       <Navbar />
       <Route path="/">
-        <Welcome />
+        {supabase.auth.user !== null ? <Home /> : <Welcome />}
       </Route>
       <Route path="/join">
         <Register />

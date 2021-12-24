@@ -1,26 +1,35 @@
-import React, { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { thunkLogIn } from "../../store/actions/userActions";
+import React, { useState } from "react";
 import { useLocation } from "wouter";
 import { useForm, SubmitHandler } from "react-hook-form";
 import LoginData from "../../models/auth/LoginData";
+import { supabase } from "../../supabaseClient";
 
-//TODO: display info about errors in inputs
+interface Props {
+  close?: Function;
+}
 
-const Login: React.FC = () => {
-  const [, setLocation] = useLocation();
-  const user = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
-
+const Login: React.FC<Props> = ({ close }) => {
   const { register, handleSubmit } = useForm<LoginData>();
+  const [, setLocation] = useLocation();
 
-  //redirect when user data is present
-  useEffect(() => {
-    if (user.data) setLocation("/home");
-  }, [user]);
-
-  const handleLogIn: SubmitHandler<LoginData> = (data) =>
-    dispatch(thunkLogIn(data));
+  const [loading, setLoading] = useState<boolean>(false);
+  const [err, setErr] = useState<string | undefined>();
+  const handleLogIn: SubmitHandler<LoginData> = async (data) => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.signIn({
+        email: data.email,
+        password: data.password,
+      });
+      if (error) throw error;
+      if (close) close();
+      setLocation("/");
+    } catch (error: any) {
+      alert(error.error_description || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -43,13 +52,9 @@ const Login: React.FC = () => {
           placeholder="Password..."
           {...register("password", { required: true })}
         />
-        {user.error && (
-          <div className="text-center my-2 text-purple-600">
-            {user.error.message}
-          </div>
-        )}
+        {err && <div className="text-center my-2 text-purple-600">{err}</div>}
         <button className="black-button">
-          {user.loading ? "Loading..." : "Log In"}
+          {loading ? "Loading..." : "Log in"}
         </button>
       </form>
     </div>
