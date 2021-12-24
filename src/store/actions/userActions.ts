@@ -3,6 +3,7 @@ import { RootState } from "../store";
 import { load, loaded, error } from "../reducers/userReducer";
 import { supabase, supabaseTables } from "../../supabaseClient";
 import LoginData from "../../models/auth/LoginData";
+import RegisterData from "../../models/auth/RegisterData";
 
 
 export const thunkLogIn = (data: LoginData):
@@ -16,39 +17,37 @@ export const thunkLogIn = (data: LoginData):
                 //get data from supabase
                 let { error, data } =
                     await supabase.from(supabaseTables.USER)
-                        .select('name, surname').eq("user_id", user.id).single();
+                        .select('name surname').eq("user_id", user.id).single();
 
                 //dispach acurate action
                 if (error) { throw error; }
                 if (data) {
+                    console.log(data);
                     dispatch({ type: loaded, payload: { id: user.id, ...data } })
                 }
             } else if (error)
                 throw error;
         } catch (err: any) {
-            //TODO: dispatch accurate error
             dispatch({
-                type: error, payload: {
-                    message: err.message,
-                }
+                type: error, payload: err.message
             })
         }
     }
 }
 
 export const thunkRegister =
-    (name: string, surname: string, email: string, password: string):
+    (data: RegisterData):
         ThunkAction<void, RootState, unknown, AnyAction> => {
         return async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
             try {
                 dispatch({ type: load });
-                const { user, error } = await supabase.auth.signUp({ email, password });
+                const { user, error } = await supabase.auth.signUp({ email: data.email, password: data.password, }, { data: { name: data.name, surname: data.surname } });
                 if (error) throw error;
                 if (user) {
                     //save info to db
-                    const { error } = await supabase.from(supabaseTables.USER).insert({ name, surname, user_id: user.id })
+                    const { error } = await supabase.from(supabaseTables.USER).insert({ name: data.name, surname: data.surname, user_id: user.id })
                     if (error) throw error;
-                    dispatch({ type: loaded, payload: { name, surname, id: user.id } })
+                    dispatch({ type: loaded, payload: { name: data.name, surname: data.surname, id: user.id } })
                 }
             } catch (err: any) {
                 dispatch({

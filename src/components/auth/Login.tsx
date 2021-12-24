@@ -19,8 +19,8 @@ const Login: React.FC = () => {
     if (user.data) setLocation("/home");
   }, [user]);
 
-  const handleLogIn: SubmitHandler<LoginData> = (data) => {};
-  //dispatch(thunkLogIn(data));
+  const handleLogIn: SubmitHandler<LoginData> = (data) =>
+    dispatch(thunkLogIn(data));
 
   return (
     <div>
@@ -30,23 +30,28 @@ const Login: React.FC = () => {
           Log In
         </span>
       </div>
-
-      <input
-        type="text"
-        className="text-input mb-2"
-        placeholder="Email..."
-        {...register("email", { required: true })}
-      />
-      <input
-        type="password"
-        className="text-input"
-        placeholder="Password..."
-        {...register("password", { required: true })}
-      />
-      {user.error && <div className="text-center ">{user.error.message}</div>}
-      <div className="black-button" onClick={() => handleSubmit(handleLogIn)}>
-        {user.loading ? "Loading..." : "Log In"}
-      </div>
+      <form onSubmit={handleSubmit(handleLogIn)}>
+        <input
+          type="text"
+          className="text-input mb-2"
+          placeholder="Email..."
+          {...register("email", { required: true })}
+        />
+        <input
+          type="password"
+          className="text-input"
+          placeholder="Password..."
+          {...register("password", { required: true })}
+        />
+        {user.error && (
+          <div className="text-center my-2 text-purple-600">
+            {user.error.message}
+          </div>
+        )}
+        <button className="black-button">
+          {user.loading ? "Loading..." : "Log In"}
+        </button>
+      </form>
     </div>
   );
 };

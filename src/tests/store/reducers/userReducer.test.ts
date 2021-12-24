@@ -21,9 +21,9 @@ test('should return data when action is "loaded"', () => {
 
 test('should return error when action is "error"', () => {
     const previousState = { loading: true };
-    expect(reducer(previousState, error({}))).toEqual({
+    expect(reducer(previousState, error(""))).toEqual({
         loading: false,
-        error: {}
+        error: ""
     });
 });
 

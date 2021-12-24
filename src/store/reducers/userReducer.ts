@@ -19,8 +19,8 @@ export const userSlice = createSlice({
         loaded: (state, action: PayloadAction<User>) => {
             return { loading: false, data: action.payload };
         },
-        error: (state, action: PayloadAction<any>) => {
-            return { loading: false, error: {} }
+        error: (state, action: PayloadAction<string>) => {
+            return { loading: false, error: { message: action.payload } }
         },
         cancel: state => { return { loading: false } }
     }
