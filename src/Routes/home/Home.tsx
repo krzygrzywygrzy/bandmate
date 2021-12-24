@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
-
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { load } from "../../store/reducers/userReducer";
+import { supabase } from "../../supabaseClient";
 
 const Home: React.FC = () => {
-  const auth = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-    dispatch({ type: load });
-  }, []);
-
-  return <div>{JSON.stringify(auth)}</div>;
+  return (
+    <div className="site-container">
+      <header>Welcome {JSON.stringify(supabase.auth.user.toString)}</header>
+    </div>
+  );
 };
 
 export default Home;

@@ -25,7 +25,7 @@ const Login: React.FC<Props> = ({ close }) => {
       if (close) close();
       setLocation("/");
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      setErr(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
