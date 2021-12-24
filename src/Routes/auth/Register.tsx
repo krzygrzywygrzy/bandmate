@@ -31,7 +31,7 @@ const Register: React.FC = () => {
   return (
     <div className="site-container">
       <header className="my-12 text-2xl">
-        <span className="text-purple-600 font-semibold text-5xl">Join</span>
+        <span className="text-purple-600 font-semibold text-5xl">Join </span>{" "}
         BandMate
       </header>
       <main>
@@ -79,7 +79,7 @@ const Register: React.FC = () => {
         </form>
       </main>
       <Popup trigger={successPopup}>
-        <div className="bg-white rounded p-4 w-full md:w-96 mx-4 md:my-0 shadow">
+        <div className="popup-content">
           <div className="flex justify-end">
             <div className="icon-button" onClick={() => setSuccessPopup(false)}>
               <IoCloseOutline size={24} />

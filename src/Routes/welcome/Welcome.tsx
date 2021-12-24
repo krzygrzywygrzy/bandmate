@@ -28,7 +28,7 @@ const Welcome: React.FC = () => {
         </div>
       </main>
       <Popup trigger={loginPopup}>
-        <div className="bg-white p-4 w-96 shadow rounded">
+        <div className="popup-content">
           <div className="flex justify-end ">
             <div className="icon-button" onClick={() => setLoginPopup(false)}>
               <IoCloseOutline size={24} />

@@ -37,6 +37,10 @@ code {
   @apply fixed top-0 left-0 w-full h-full flex justify-center items-center z-50;
 }
 
+.popup-content {
+  @apply bg-white rounded p-4 w-full sm:w-96 mx-4 sm:my-0 shadow;
+}
+
 .text-input {
   transition: border-color 0.25s ease-in-out;
   @apply w-full px-4 py-2 focus:outline-none border-2 focus:border-purple-600 text-sm rounded;
