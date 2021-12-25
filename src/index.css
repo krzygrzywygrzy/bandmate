@@ -63,3 +63,11 @@ code {
 .header {
   @apply my-4 sm:my-8 md:my-12;
 }
+
+.textarea {
+  transition: outline-color 0.25s ease-in-out;
+  -webkit-transition: outline-color 0.25s ease-in-out;
+  -moz-transition: outline-color 0.25s ease-in-out;
+  -o-transition: outline-color 0.25s ease-in-out;
+  @apply border w-full rounded resize-none text-sm py-1 px-2 focus:outline-purple-600 outline-white;
+}

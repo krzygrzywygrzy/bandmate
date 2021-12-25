@@ -27,5 +27,4 @@ export const userSlice = createSlice({
 });
 
 export const { load, loaded, error, cancel } = userSlice.actions;
-export const userAction = userSlice.actions;
 export default userSlice.reducer;
