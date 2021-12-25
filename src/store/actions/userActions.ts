@@ -22,7 +22,6 @@ export const thunkLogIn = (data: LoginData):
                 //dispach acurate action
                 if (error) { throw error; }
                 if (data) {
-                    console.log(data);
                     dispatch({ type: loaded, payload: { id: user.id, ...data } })
                 }
             } else if (error)

@@ -71,3 +71,8 @@ code {
   -o-transition: outline-color 0.25s ease-in-out;
   @apply border w-full rounded resize-none text-sm py-1 px-2 focus:outline-purple-600 outline-white;
 }
+
+.selective-button {
+  transition: border-color 0.25s ease-in-out;
+  @apply mr-2 my-1 py-1 px-2 rounded border-2;
+}
