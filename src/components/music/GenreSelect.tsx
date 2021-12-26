@@ -1,8 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
-import SelectiveButton, {
-  SelectiveButtonSkeleton,
-} from "../button/SelectiveButton";
+import SelectiveButton from "../button/SelectiveButton";
 import MusicSkeleton from "./MusicSkeleton";
 
 interface Props {

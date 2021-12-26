@@ -10,9 +10,17 @@ export const thunkLoadMusicData = ():
     ) => {
         try {
             dispatch({ type: load });
-            const { data, error } = await supabase.from("genre").select();
-            if (error) throw error;
-            dispatch({ type: loaded, payload: { genres: data } });
+
+            //select genres
+            const genres = await supabase.from("genre").select();
+            if (genres.error) throw error;
+
+            //select instruments
+            const instruments = await supabase.from("instrument").select();
+            if (instruments.error) throw error;
+
+            //dispatch 
+            dispatch({ type: loaded, payload: { genres: genres.data, instruments: instruments.data } });
         } catch (err: any) {
             dispatch({
                 type: error, payload: err.message

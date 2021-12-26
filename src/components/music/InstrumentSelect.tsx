@@ -1,5 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
+import SelectiveButton from "../button/SelectiveButton";
+import MusicSkeleton from "./MusicSkeleton";
 
 interface Props {
   selectedInstruments: string[];
@@ -24,7 +26,25 @@ const InstrumentSelect: React.FC<Props> = ({
   };
 
   return (
-    <div>{title && <div className="text-base sm:text-xl">{title}</div>}</div>
+    <div>
+      {title && <div className="text-base sm:text-xl">{title}</div>}
+      {music.loading || music.error || !music.data ? (
+        <MusicSkeleton />
+      ) : (
+        <div className="my-2 flex flex-wrap">
+          {music.data!.instruments.map((genre) => {
+            return (
+              <SelectiveButton
+                label={genre.name}
+                key={genre.id}
+                selected={selectedInstruments.includes(genre.name)}
+                toogle={toogleInstrumentSelection}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 };
 
