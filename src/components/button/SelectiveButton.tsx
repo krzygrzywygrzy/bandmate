@@ -10,7 +10,7 @@ const SelectiveButton: React.FC<Props> = ({ label, selected, toogle }) => {
   return (
     <button
       className={`selective-button  ${
-        selected ? "border-purple-500 shadow-lg" : "border-black"
+        selected ? "border-purple-600 shadow-lg" : "border-black shadow-none"
       }`}
       onClick={() => {
         if (toogle) toogle(label);
