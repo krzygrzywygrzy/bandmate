@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
         )}
       </div>
       <Popup trigger={loginPopup}>
-        <div className="popup-content">
+        <div className="popup-content md:mb-96">
           <div className="flex justify-end ">
             <div className="icon-button" onClick={() => setLoginPopup(false)}>
               <IoCloseOutline size={24} />
