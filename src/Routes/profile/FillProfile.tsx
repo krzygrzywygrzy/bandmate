@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SelectiveButton from "../../components/button/SelectiveButton";
 import GenreSelect from "../../components/music/GenreSelect";
+import InstrumentSelect from "../../components/music/InstrumentSelect";
 import { thunkLoadMusicData } from "../../store/actions/musicActions";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 
@@ -49,6 +50,11 @@ const FillProfile: React.FC = () => {
           title="Select genres you love"
         />
         <div className="border-b my-4"></div>
+        <InstrumentSelect
+          selectedInstruments={selectedInstruments}
+          setSelectedInstruments={(i: string[]) => setSelectedInstruments(i)}
+          title="Select instruments you play"
+        />
       </section>
     </div>
   );
