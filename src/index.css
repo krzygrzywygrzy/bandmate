@@ -76,3 +76,7 @@ code {
   transition: all 0.25s ease-in-out;
   @apply mr-2 my-1 py-1 px-2 rounded border-2;
 }
+
+.selective-button-skeleton {
+  @apply bg-gray-300 h-10 w-24 mr-2 my-1;
+}

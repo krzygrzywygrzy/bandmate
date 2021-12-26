@@ -1,15 +1,19 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
-import SelectiveButton from "../button/SelectiveButton";
+import SelectiveButton, {
+  SelectiveButtonSkeleton,
+} from "../button/SelectiveButton";
 
 interface Props {
   selectedGenres: string[];
   setSelectedGenres: Function;
+  title?: string;
 }
 
 const GenreSelect: React.FC<Props> = ({
   selectedGenres,
   setSelectedGenres,
+  title,
 }) => {
   const music = useAppSelector((state) => state.music);
   const toogleGenreSelection = (genre: string) => {
@@ -22,8 +26,9 @@ const GenreSelect: React.FC<Props> = ({
 
   return (
     <div>
+      {title && <div className="text-base sm:text-xl">{title}</div>}
       {music.loading || music.error || !music.data ? (
-        <div>Loading</div>
+        <Skeleton />
       ) : (
         <div className="my-2 flex flex-wrap">
           {music.data!.genres.map((genre) => {
@@ -43,3 +48,19 @@ const GenreSelect: React.FC<Props> = ({
 };
 
 export default GenreSelect;
+
+const Skeleton: React.FC = () => {
+  return (
+    <div>
+      <div className="flex">
+        <SelectiveButtonSkeleton />
+        <SelectiveButtonSkeleton />
+        <SelectiveButtonSkeleton />
+      </div>
+      <div className="flex">
+        <SelectiveButtonSkeleton />
+        <SelectiveButtonSkeleton />
+      </div>
+    </div>
+  );
+};

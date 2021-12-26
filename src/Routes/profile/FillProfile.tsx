@@ -13,6 +13,7 @@ const FillProfile: React.FC = () => {
 
   const [description, setDescription] = useState<string>("");
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedInstruments, setSelectedInstruments] = useState<string[]>([]);
 
   return (
     <div className="site-container">
@@ -21,15 +22,17 @@ const FillProfile: React.FC = () => {
           Fill your profile
         </span>
         <br />
-        <p className="text-sm sm:text-base">
+        <p className="text-xl sm:text-2xl">
           The registration process went successfuly so now it is time to fill
           rest of the gaps
         </p>
       </header>
       <section className="w-full sm:w-96 header">
-        <p className="text-sm sm:text-xl">First tell us some about yourself</p>
+        <p className="text-base sm:text-2xl">
+          First tell us some about yourself
+        </p>
         <textarea
-          className="textarea my-2"
+          className="textarea my-4"
           placeholder="Your description"
           rows={10}
           value={description}
@@ -37,13 +40,15 @@ const FillProfile: React.FC = () => {
         ></textarea>
       </section>
       <section className="w-full sm:w-96 header">
-        <p className="text-sm sm:text-xl">
+        <p className="text-base sm:text-2xl border-b pb-4 mb-4">
           Now provide some information about your skills and interests
         </p>
         <GenreSelect
           selectedGenres={selectedGenres}
           setSelectedGenres={(g: string[]) => setSelectedGenres(g)}
+          title="Select genres you love"
         />
+        <div className="border-b my-4"></div>
       </section>
     </div>
   );

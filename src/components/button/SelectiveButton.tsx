@@ -22,3 +22,7 @@ const SelectiveButton: React.FC<Props> = ({ label, selected, toogle }) => {
 };
 
 export default SelectiveButton;
+
+export const SelectiveButtonSkeleton: React.FC = () => {
+  return <div className="selective-button-skeleton rounded"></div>;
+};
