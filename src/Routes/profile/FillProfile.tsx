@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import GenreSelect from "../../components/music/GenreSelect";
 import InstrumentSelect from "../../components/music/InstrumentSelect";
 import { thunkLoadMusicData } from "../../store/actions/musicActions";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 
 const FillProfile: React.FC = () => {
   const dispatch = useAppDispatch();
