@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SelectiveButton from "../../components/button/SelectiveButton";
 import GenreSelect from "../../components/music/GenreSelect";
 import InstrumentSelect from "../../components/music/InstrumentSelect";
 import { thunkLoadMusicData } from "../../store/actions/musicActions";
@@ -7,7 +6,6 @@ import { useAppSelector, useAppDispatch } from "../../store/hooks";
 
 const FillProfile: React.FC = () => {
   const dispatch = useAppDispatch();
-  const music = useAppSelector((state) => state.music);
   useEffect(() => {
     dispatch(thunkLoadMusicData());
   }, [dispatch]);
