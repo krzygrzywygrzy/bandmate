@@ -3,6 +3,7 @@ import GenreSelect from "../../components/music/GenreSelect";
 import InstrumentSelect from "../../components/music/InstrumentSelect";
 import { thunkLoadMusicData } from "../../store/actions/musicActions";
 import { useAppDispatch } from "../../store/hooks";
+import Spotify from "react-spotify-embed";
 
 const FillProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ const FillProfile: React.FC = () => {
   const [description, setDescription] = useState<string>("");
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [selectedInstruments, setSelectedInstruments] = useState<string[]>([]);
+  const [spotifyLink, setSpotifyLink] = useState<string | null>();
 
   return (
     <div className="site-container">
@@ -53,6 +55,20 @@ const FillProfile: React.FC = () => {
           setSelectedInstruments={(i: string[]) => setSelectedInstruments(i)}
           title="Select instruments you play"
         />
+        <div className="border-b my-4"></div>
+        <section>
+          <div className="text-base sm:text-xl">
+            You can share Spotify link to your favourite song or album
+          </div>
+          <input
+            type="text"
+            placeholder="Spotify link...."
+            className="register-text-input my-2"
+            value={spotifyLink ?? ""}
+            onChange={(e) => setSpotifyLink(e.target.value)}
+          />
+          {spotifyLink && <Spotify link={spotifyLink} className="w-96 my-2" />}
+        </section>
       </section>
     </div>
   );
