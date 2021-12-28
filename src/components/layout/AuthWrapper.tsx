@@ -5,7 +5,8 @@ import { supabase } from "../../supabaseClient";
 const AuthWrapper: React.FC = ({ children }) => {
   const [, setLocation] = useLocation();
   useEffect(() => {
-    if (!supabase.auth.user()?.user_metadata.filled)
+    if (supabase.auth.user() == null) setLocation("/");
+    else if (!supabase.auth.user()?.user_metadata.filled)
       setLocation("/fill_profile");
   });
 

@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const [loginPopup, setLoginPopup] = useState<boolean>(false);
 
   return (
-    <div className="flex justify-between site-container py-4">
+    <div className="flex justify-between site-container py-4 ">
       <div className="flex">
         <Link href="/" className="font-semibold text-purple-600">
           BandMate
