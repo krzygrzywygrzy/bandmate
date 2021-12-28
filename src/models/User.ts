@@ -1,6 +1,8 @@
 interface User {
-    id: number;
-    name: string;
-    surname: string;
+    user_id: string;
+    genres: string[];
+    instruments: string[];
+    spotify?: string;
+    description?: string;
 }
 export default User;

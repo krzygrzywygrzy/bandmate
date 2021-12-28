@@ -20,7 +20,7 @@ const Welcome: React.FC = () => {
       </header>
       <main className="flex flex-col md:flex-row  md:items-center">
         <Link href="/join">
-          <div className="purple-button">Join</div>
+          <div className="purple-button sm:w-72 w-full">Join</div>
         </Link>
         <div className="text-center sm:text-left my-4 md:my-0">
           or{" "}

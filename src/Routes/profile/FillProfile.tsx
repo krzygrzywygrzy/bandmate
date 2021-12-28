@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import GenreSelect from "../../components/music/GenreSelect";
 import InstrumentSelect from "../../components/music/InstrumentSelect";
 import { thunkLoadMusicData } from "../../store/actions/musicActions";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Spotify from "react-spotify-embed";
+import { thunkWriteUser } from "../../store/actions/userActions";
+import { supabase } from "../../supabaseClient";
+import isValidUrl from "../../core/isValidUrl";
+import { useLocation } from "wouter";
 
 const FillProfile: React.FC = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
+
   useEffect(() => {
     dispatch(thunkLoadMusicData());
   }, [dispatch]);
@@ -14,7 +20,24 @@ const FillProfile: React.FC = () => {
   const [description, setDescription] = useState<string>("");
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [selectedInstruments, setSelectedInstruments] = useState<string[]>([]);
-  const [spotifyLink, setSpotifyLink] = useState<string | null>();
+  const [spotifyLink, setSpotifyLink] = useState<string | undefined>();
+
+  const handleSubmit = () => {
+    dispatch(
+      thunkWriteUser({
+        user_id: supabase.auth.user()!.id,
+        instruments: selectedInstruments,
+        genres: selectedGenres,
+        description,
+        spotify: spotifyLink,
+      })
+    );
+  };
+
+  const [, setLocation] = useLocation();
+  useEffect(() => {
+    if (supabase.auth.user()!.user_metadata.filled) setLocation("/");
+  });
 
   return (
     <div className="site-container">
@@ -56,7 +79,7 @@ const FillProfile: React.FC = () => {
           title="Select instruments you play"
         />
         <div className="border-b my-4"></div>
-        <section>
+        <section className="mb-8">
           <div className="text-base sm:text-xl">
             You can share Spotify link to your favourite song or album
           </div>
@@ -67,8 +90,19 @@ const FillProfile: React.FC = () => {
             value={spotifyLink ?? ""}
             onChange={(e) => setSpotifyLink(e.target.value)}
           />
-          {spotifyLink && <Spotify link={spotifyLink} className="w-96 my-2" />}
+          {spotifyLink && isValidUrl(spotifyLink) && (
+            <Spotify
+              link={spotifyLink}
+              className="w-full  sm:mx-0 sm:w-96 my-2"
+            />
+          )}
         </section>
+        {user.error && (
+          <div className="my-2 text-purple-600">{user.error.message}</div>
+        )}
+        <button className="purple-button w-full sm:w-96" onClick={handleSubmit}>
+          {user.loading ? "Loading..." : "Save"}
+        </button>
       </section>
     </div>
   );
