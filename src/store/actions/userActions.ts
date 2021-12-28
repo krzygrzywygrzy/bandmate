@@ -12,11 +12,15 @@ export const thunkWriteUser = (user: User):
     ) => {
         try {
             dispatch({ type: load });
+
+            //save to db
             const { error } = await supabase.from("user").insert([
                 { ...user }
             ]);
             if (error)
                 throw error;
+
+            //update user metadata 
             const auth = await supabase.auth.update(
                 { data: { ...supabase.auth.user()!.user_metadata, filled: true } });
             if (auth.error) throw auth.error;
