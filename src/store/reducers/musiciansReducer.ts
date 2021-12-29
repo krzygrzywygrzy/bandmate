@@ -24,3 +24,6 @@ export const musiciansSlice = createSlice({
         }
     }
 });
+
+export const { load, loaded, error } = musiciansSlice.actions;
+export default musiciansSlice.reducer;
