@@ -26,10 +26,23 @@ const HomeSwiping: React.FC = () => {
   return (
     <main>
       {musicians.data.length > 0 ? (
-        <div className="flex">
-          <UserCard user={musicians.data[0]} likeable={true} />
-          <div className="ml-16 hidden sm:block">
-            <UserCard user={musicians.data[0]} likeable={false} />
+        <div className=" flex">
+          <div className="w-96">
+            <UserCard user={musicians.data[0]} likeable={true} />
+          </div>
+          <div className="flex overflow-x-hidden">
+            <div className="ml-16 hidden sm:block">
+              <UserCard user={musicians.data[0]} likeable={false} />
+            </div>
+            <div className="ml-16 hidden sm:block">
+              <UserCard user={musicians.data[0]} likeable={false} />
+            </div>
+            <div className="ml-16 hidden sm:block">
+              <UserCard user={musicians.data[0]} likeable={false} />
+            </div>
+            <div className="ml-16 hidden sm:block">
+              <UserCard user={musicians.data[0]} likeable={false} />
+            </div>
           </div>
         </div>
       ) : (

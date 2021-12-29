@@ -91,6 +91,10 @@ code {
   @apply bg-gray-300 h-10 w-24 mr-2 my-1;
 }
 
+.home-musicians {
+  overflow-x: scroll;
+}
+
 .user-card {
-  @apply rounded sm:border-b sm:max-h-userCardHeight overflow-scroll sm:hide-scrollbar;
+  @apply rounded sm:border-b sm:max-h-userCardHeight  sm:hide-scrollbar;
 }
