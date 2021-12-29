@@ -16,7 +16,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+  }
 
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+}
 .site-container {
   margin: auto;
   @apply 2xl:w-siteWidth2xl xl:w-siteWidthxl lg:w-siteWithLarge md:w-siteWithMedium px-4 md:px-0;
@@ -79,4 +89,8 @@ code {
 
 .selective-button-skeleton {
   @apply bg-gray-300 h-10 w-24 mr-2 my-1;
+}
+
+.user-card {
+  @apply rounded border-b max-h-userCardHeight overflow-scroll sm:hide-scrollbar;
 }

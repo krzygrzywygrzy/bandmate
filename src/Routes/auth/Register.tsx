@@ -4,8 +4,10 @@ import { IoCloseOutline } from "react-icons/io5";
 import Popup from "../../components/popups/Popup";
 import RegisterData from "../../models/auth/RegisterData";
 import { supabase } from "../../supabaseClient";
+import { useLocation } from "wouter";
 
 const Register: React.FC = () => {
+  const [, setLocation] = useLocation();
   const { register, handleSubmit } = useForm<RegisterData>();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -81,7 +83,13 @@ const Register: React.FC = () => {
       <Popup trigger={successPopup}>
         <div className="popup-content">
           <div className="flex justify-end">
-            <div className="icon-button" onClick={() => setSuccessPopup(false)}>
+            <div
+              className="icon-button"
+              onClick={() => {
+                setSuccessPopup(false);
+                setLocation("/");
+              }}
+            >
               <IoCloseOutline size={24} />
             </div>
           </div>

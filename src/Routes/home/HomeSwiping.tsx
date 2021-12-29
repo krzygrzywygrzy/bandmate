@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import UserCard from "../../components/cards/UserCard";
 import { thunkLoadMusicians } from "../../store/actions/musiciansActions";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
@@ -22,7 +23,22 @@ const HomeSwiping: React.FC = () => {
     return <main></main>;
   }
 
-  return <main>{JSON.stringify(musicians.data)}</main>;
+  return (
+    <main>
+      {musicians.data.length > 0 ? (
+        <div className="flex">
+          <UserCard user={musicians.data[0]} likeable={true} />
+          <UserCard user={musicians.data[0]} likeable={false} />
+        </div>
+      ) : (
+        <div>
+          <span className="text-3xl font-semibold">It is all for now</span>
+          <br />
+          <span>you can still come back later...</span>
+        </div>
+      )}
+    </main>
+  );
 };
 
 export default HomeSwiping;

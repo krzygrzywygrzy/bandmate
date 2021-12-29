@@ -24,3 +24,16 @@ export const thunkLoadMusicians = ():
         }
     }
 }
+
+export const thunkSwipe = (like: boolean):
+    ThunkAction<void, RootState, unknown, AnyAction> => {
+    return async (
+        dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
+        getState: () => RootState,
+    ) => {
+        const { musicians } = getState();
+        if (musicians.data && musicians.data!.length !== 0) {
+            //TODO: implement
+        }
+    }
+}

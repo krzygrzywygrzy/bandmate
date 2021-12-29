@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import User from "../../models/User";
 
 interface MusiciansState {
-    data?: any;
+    data?: User[];
     error?: any;
     loading: boolean;
 }
