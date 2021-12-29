@@ -30,6 +30,8 @@ const FillProfile: React.FC = () => {
         genres: selectedGenres,
         description,
         spotify: spotifyLink,
+        name: supabase.auth.user()!.user_metadata.name,
+        surname: supabase.auth.user()!.user_metadata.surname,
       })
     );
   };

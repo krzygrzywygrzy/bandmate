@@ -4,5 +4,7 @@ interface User {
     instruments: string[];
     spotify?: string;
     description?: string;
+    name: string;
+    surname: string;
 }
 export default User;
