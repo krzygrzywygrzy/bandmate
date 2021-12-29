@@ -28,7 +28,9 @@ const HomeSwiping: React.FC = () => {
       {musicians.data.length > 0 ? (
         <div className="flex">
           <UserCard user={musicians.data[0]} likeable={true} />
-          <UserCard user={musicians.data[0]} likeable={false} />
+          <div className="ml-16 hidden sm:block">
+            <UserCard user={musicians.data[0]} likeable={false} />
+          </div>
         </div>
       ) : (
         <div>

@@ -92,5 +92,5 @@ code {
 }
 
 .user-card {
-  @apply rounded border-b max-h-userCardHeight overflow-scroll sm:hide-scrollbar;
+  @apply rounded sm:border-b sm:max-h-userCardHeight overflow-scroll sm:hide-scrollbar;
 }
