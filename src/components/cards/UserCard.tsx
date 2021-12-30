@@ -18,7 +18,7 @@ const UserCard: React.FC<Props> = ({ user, likeable }) => {
   const handleSwipe = (like: boolean) => dispatch(thunkSwipe(like));
 
   return (
-    <div className={`user-card w-full sm:w-96`}>
+    <div className={`user-card w-full ${likeable && "sm:w-xl"}`}>
       <div className={`${likeable ? "h-xl" : "h-96"}`}>
         <img
           className={` object-cover rounded shadow-lg ${
@@ -71,7 +71,7 @@ const UserCard: React.FC<Props> = ({ user, likeable }) => {
       {user.spotify && isValidUrl(user.spotify) && likeable && (
         <Spotify
           link={user.spotify}
-          className={`w-full sm:mx-0 my-2 ${likeable ? "sm:w-96" : "sm:w-72"}`}
+          className={`w-full sm:mx-0 my-2 ${likeable ? "sm:w-xl" : "sm:w-72"}`}
         />
       )}
     </div>
