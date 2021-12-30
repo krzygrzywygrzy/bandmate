@@ -96,5 +96,10 @@ code {
 }
 
 .user-card {
-  @apply rounded sm:border-b sm:max-h-userCardHeight  sm:hide-scrollbar;
+  @apply rounded sm:border-b  sm:hide-scrollbar;
+}
+
+.like-button {
+  transition: all 0.25s ease-in-out;
+  @apply mr-4 p-2 cursor-pointer rounded-full border-white border hover:border-gray-300;
 }

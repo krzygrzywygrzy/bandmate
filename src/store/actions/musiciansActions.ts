@@ -34,6 +34,7 @@ export const thunkSwipe = (like: boolean):
         const { musicians } = getState();
         if (musicians.data && musicians.data!.length !== 0) {
             //TODO: implement
+            console.log(musicians.data[0])
         }
     }
 }
