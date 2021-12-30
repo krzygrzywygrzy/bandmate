@@ -33,8 +33,29 @@ export const thunkSwipe = (like: boolean):
     ) => {
         const { musicians } = getState();
         if (musicians.data && musicians.data!.length !== 0) {
-            //TODO: implement
-            console.log(musicians.data[0])
+            try {
+                if (!like)
+                    dispatch({ type: loaded, payload: musicians.data.slice(1) });
+                else {
+                    //check if you are liked by person
+                    const swipe = await supabase.from("user").select("likes, matches").filter("user_id", "eq", musicians.data[0].user_id);
+                    if (swipe.error) throw swipe.error;
+
+                    console.log(swipe.data);
+
+
+                    if (swipe.data[0].likes.includes(supabase.auth.user()!.id)) {
+                        //if you are liked: match 
+
+                    } else {
+                        //else add swipe to your likes
+                    }
+
+                }
+            } catch (err: any) {
+                dispatch({ type: error, payload: err.message, });
+            }
+
         }
     }
 }

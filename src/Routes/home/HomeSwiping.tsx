@@ -30,7 +30,9 @@ const HomeSwiping: React.FC = () => {
           <div className="w-96">
             <UserCard user={musicians.data[0]} likeable={true} />
           </div>
-          <div className="hidden md:block ml-32 mr-16 ">Next in order...</div>
+          {musicians.data.length > 1 && (
+            <div className="hidden md:block ml-32 mr-16 ">Next in order...</div>
+          )}
           <div className=" flex flex-row   overflow-x-scroll">
             {musicians.data.slice(1).map((musician) => {
               return (

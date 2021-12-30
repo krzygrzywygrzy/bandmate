@@ -18,7 +18,7 @@ const UserCard: React.FC<Props> = ({ user, likeable }) => {
   const handleSwipe = (like: boolean) => dispatch(thunkSwipe(like));
 
   return (
-    <div className={`user-card w-full ${likeable && "sm:w-xl"}`}>
+    <div className={`user-card w-full sm:w-xl`}>
       <div className={`${likeable ? "h-xl" : "h-96"}`}>
         <img
           className={` object-cover rounded shadow-lg ${
