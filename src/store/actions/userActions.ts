@@ -20,6 +20,14 @@ export const thunkWriteUser = (user: User):
             if (error)
                 throw error;
 
+            const matches = await supabase.from("match").insert({
+                matches: [],
+                likes: [],
+                user_id: user.user_id
+            })
+
+            if (matches.error) throw matches.error;
+
             //update user metadata 
             const auth = await supabase.auth.update(
                 { data: { ...supabase.auth.user()!.user_metadata, filled: true } });

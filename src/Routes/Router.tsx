@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import { Route } from "wouter";
 import Welcome from "./welcome/Welcome";
@@ -9,6 +9,19 @@ import FillProfile from "./profile/FillProfile";
 import Profile from "./profile/Profile";
 
 const Router: React.FC = () => {
+  useEffect(() => {
+    const matchesSubscription = supabase
+      .from(`match:user_id=eq.${supabase.auth.user()?.id}`)
+      .on(`UPDATE`, (payload) => {
+        //TODO: show info about new match
+      })
+      .subscribe();
+
+    return () => {
+      matchesSubscription.unsubscribe();
+    };
+  }, []);
+
   return (
     <div>
       <Navbar />

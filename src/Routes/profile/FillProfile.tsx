@@ -32,8 +32,6 @@ const FillProfile: React.FC = () => {
         spotify: spotifyLink,
         name: supabase.auth.user()!.user_metadata.name,
         surname: supabase.auth.user()!.user_metadata.surname,
-        likes: [],
-        matches: [],
       })
     );
   };

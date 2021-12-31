@@ -6,7 +6,5 @@ interface User {
     description?: string;
     name: string;
     surname: string;
-    likes: string[];
-    matches: string[];
 }
 export default User;
