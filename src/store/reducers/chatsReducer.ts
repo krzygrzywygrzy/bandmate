@@ -9,5 +9,7 @@ const initialState: ChatsState = {}
 export const chatsSlice = createSlice({
     name: "chats",
     initialState,
-    reducers: {}
+    reducers: {
+
+    }
 })

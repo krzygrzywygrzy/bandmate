@@ -11,15 +11,12 @@ export const thunkLoadMusicians = ():
         dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
     ) => {
         try {
-
             dispatch({ type: load });
 
             const you = await supabase.from("user").select("*, match(likes, matches)").match({ user_id: supabase.auth.user()!.id });
             if (you.error) throw you.error;
 
             const exclude = [supabase.auth.user()!.id, ...you.data[0].match[0].likes, ...you.data[0].match[0].matches].toString();
-
-
             const { data, error } =
                 await supabase.from("user").select()
                     .not("user_id", "in", `(${exclude})`);
@@ -59,23 +56,20 @@ export const thunkSwipe = (like: boolean):
                         //create chat
                         const chat = await supabase.from("chat").insert({});
                         if (chat.error) throw chat.error;
-                        console.log(chat.data);
-
-
 
                         //update swiped person
                         const swipeUpdate = await supabase.from("match").update({
                             matches: [...swipe.data[0].matches, supabase.auth.user()!.id],
-                            likes: [...swipe.data[0].likes.filter((el: string) => el !== supabase.auth.user()!.id)]
+                            likes: [...swipe.data[0].likes.filter((el: string) => el !== supabase.auth.user()!.id)],
+                            chat_id: [...swipe.data[0].chat_id, chat.data[0].id],
                         }).match({ user_id: musicians.data[0].user_id });
                         if (swipeUpdate.error) throw swipeUpdate.error;
-
-
 
                         //update your data
                         const yoursUpdate = await supabase.from("match").update({
                             matches: [...you.data[0].matches, musicians.data[0].user_id],
-                            likes: [...you.data[0].likes.filter((el: string) => el !== musicians.data![0].user_id)]
+                            likes: [...you.data[0].likes.filter((el: string) => el !== musicians.data![0].user_id)],
+                            chat_id: [...you.data[0].chat_id, chat.data[0].id],
                         }).match({ user_id: supabase.auth.user()!.id });
                         if (yoursUpdate.error) throw yoursUpdate.error;
 
