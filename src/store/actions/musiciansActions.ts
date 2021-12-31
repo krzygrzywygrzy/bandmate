@@ -14,15 +14,15 @@ export const thunkLoadMusicians = ():
 
             dispatch({ type: load });
 
-            const you = await supabase.from("user").select().match({ user_id: supabase.auth.user()!.id });
+            const you = await supabase.from("user").select("*, match(likes, matches)").match({ user_id: supabase.auth.user()!.id });
             if (you.error) throw you.error;
 
-            const exclude = [supabase.auth.user()!.id, ...you.data[0].likes, ...you.data[0].matches].toString();
-            console.log(exclude);
+            const exclude = [supabase.auth.user()!.id, ...you.data[0].match[0].likes, ...you.data[0].match[0].matches].toString();
+
 
             const { data, error } =
                 await supabase.from("user").select()
-                    .not("user_id", "eq", supabase.auth.user()!.id);
+                    .not("user_id", "in", `(${exclude})`);
             if (error) throw error;
 
             dispatch({ type: loaded, payload: data ?? [] })
@@ -52,6 +52,7 @@ export const thunkSwipe = (like: boolean):
                     if (you.error) throw you.error;
 
 
+
                     if (swipe.data[0].likes.includes(supabase.auth.user()!.id)) {
                         //if you are liked: match 
 
@@ -59,6 +60,8 @@ export const thunkSwipe = (like: boolean):
                         const chat = await supabase.from("chat").insert({});
                         if (chat.error) throw chat.error;
                         console.log(chat.data);
+
+
 
                         //update swiped person
                         const swipeUpdate = await supabase.from("match").update({

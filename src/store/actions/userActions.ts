@@ -23,7 +23,8 @@ export const thunkWriteUser = (user: User):
             const matches = await supabase.from("match").insert({
                 matches: [],
                 likes: [],
-                user_id: user.user_id
+                user_id: user.user_id,
+                chat_id: [],
             })
 
             if (matches.error) throw matches.error;
