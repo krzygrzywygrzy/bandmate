@@ -31,7 +31,7 @@ export const thunkSwipe = (like: boolean):
         dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
         getState: () => RootState,
     ) => {
-        const { musicians, user } = getState();
+        const { musicians } = getState();
         if (musicians.data && musicians.data!.length !== 0) {
             try {
                 if (!like)
