@@ -2,27 +2,29 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Music from "../../models/Music";
 
 interface MusicState {
-    data?: Music;
-    error?: any;
-    loading: boolean;
+  data?: Music;
+  error?: { message: string };
+  loading: boolean;
 }
 
 const initialState: MusicState = {
-    loading: false,
-}
+  loading: false,
+};
 
 export const musicSlice = createSlice({
-    name: "music",
-    initialState,
-    reducers: {
-        load: state => { return { loading: true } },
-        loaded: (state, action: PayloadAction<Music>) => {
-            return { loading: false, data: action.payload }
-        },
-        error: (state, action: PayloadAction<string>) => {
-            return { loading: false, error: { message: action.payload } }
-        }
-    }
+  name: "music",
+  initialState,
+  reducers: {
+    load: (_) => {
+      return { loading: true };
+    },
+    loaded: (_, action: PayloadAction<Music>) => {
+      return { loading: false, data: action.payload };
+    },
+    error: (_, action: PayloadAction<string>) => {
+      return { loading: false, error: { message: action.payload } };
+    },
+  },
 });
 
 export const { load, loaded, error } = musicSlice.actions;
