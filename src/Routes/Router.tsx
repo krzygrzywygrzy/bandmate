@@ -66,7 +66,10 @@ const Router: React.FC = () => {
       <Route path="/profile">
         <Profile />
       </Route>
-      <Route path="/profile/:id">
+      <Route path="/chats">
+        <Chats />
+      </Route>
+      <Route path="/chats/:id">
         {(params) => <Chats chat_id={params.id} />}
       </Route>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import AuthWrapper from "../../components/layout/AuthWrapper";
 
 interface Props {
-  chat_id: string;
+  chat_id?: string;
 }
 
 const Chats: React.FC<Props> = () => {
