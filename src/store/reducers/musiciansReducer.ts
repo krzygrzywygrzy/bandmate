@@ -3,7 +3,7 @@ import User from "../../models/User";
 
 interface MusiciansState {
   data?: User[];
-  error?: any;
+  error?: { message: string };
   loading: boolean;
 }
 
@@ -15,13 +15,13 @@ export const musiciansSlice = createSlice({
   name: "musicians",
   initialState,
   reducers: {
-    load: (state) => {
+    load: (_) => {
       return { loading: true };
     },
-    loaded: (state, action: PayloadAction<User[]>) => {
+    loaded: (_, action: PayloadAction<User[]>) => {
       return { loading: false, data: action.payload };
     },
-    error: (state, action: PayloadAction<string>) => {
+    error: (_, action: PayloadAction<string>) => {
       return { loading: false, error: { message: action.payload } };
     },
   },

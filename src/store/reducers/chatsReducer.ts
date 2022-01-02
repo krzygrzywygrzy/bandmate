@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Message from "../../models/Message";
-import User from "../../models/User";
+import Chat from "../../models/Chat";
 
 interface ChatsState {
   loading: boolean;
   error?: { message: string };
-  data?: { user: User; message: Message }[];
+  data?: Chat[];
 }
 
 const initialState: ChatsState = { loading: false };
@@ -20,8 +19,11 @@ export const chatsSlice = createSlice({
     error: (_, action: PayloadAction<string>) => {
       return { loading: false, error: { message: action.payload } };
     },
-    loaded: (_, action: PayloadAction<{ user: User; message: Message }[]>) => {
+    loaded: (_, action: PayloadAction<Chat[]>) => {
       return { loading: false, data: action.payload };
     },
   },
 });
+
+export const { load, error, loaded } = chatsSlice.actions;
+export default chatsSlice.reducer;
