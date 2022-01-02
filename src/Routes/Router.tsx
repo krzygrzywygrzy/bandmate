@@ -17,6 +17,11 @@ const Router: React.FC = () => {
       })
       .subscribe();
 
+    const chatUpdate = supabase
+      .from("chat")
+      .on("UPDATE", (payload) => {})
+      .subscribe();
+
     return () => {
       matchesSubscription.unsubscribe();
     };
