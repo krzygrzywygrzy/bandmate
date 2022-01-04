@@ -9,9 +9,15 @@ import FillProfile from "./profile/FillProfile";
 import Profile from "./profile/Profile";
 import { RealtimeSubscription } from "@supabase/supabase-js";
 import Chats from "./chats/Chats";
+import { useAppDispatch } from "../store/hooks";
+import { chatsLoadThunk } from "../store/actions/chatActions";
 
 const Router: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
+    dispatch(chatsLoadThunk());
+
     const matchesSubscription = supabase
       .from(`match:user_id=eq.${supabase.auth.user()?.id}`)
       .on(`UPDATE`, (payload) => {
@@ -20,9 +26,6 @@ const Router: React.FC = () => {
       .subscribe();
 
     let chatSubscription: undefined | RealtimeSubscription;
-
-    //TODO: get chat data
-
     supabase
       .from("match")
       .select("chat_id")
