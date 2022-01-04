@@ -14,7 +14,7 @@ const Chats: React.FC<Props> = () => {
     <AuthWrapper>
       <div className="grid grid-cols-5">
         <div>Chat select</div>
-        <div className="col-span-4">actual chat</div>
+        <div className="col-span-4">{JSON.stringify(chats)}</div>
       </div>
     </AuthWrapper>
   );

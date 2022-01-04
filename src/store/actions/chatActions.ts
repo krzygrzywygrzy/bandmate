@@ -2,6 +2,7 @@ import { AnyAction, ThunkAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { load, loaded, error } from "../reducers/chatsReducer";
 import { supabase } from "../../supabaseClient";
+import Chat from "../../models/Chat";
 
 export const chatsLoadThunk = (): ThunkAction<
   void,
@@ -21,23 +22,29 @@ export const chatsLoadThunk = (): ThunkAction<
       if (chatList.error) throw chatList.error;
 
       //get chats data
-      const ids: any[] = chatList.data[0].chat_id;
+      const ids = chatList.data[0].chat_id;
       const chatData = await supabase.from("chat").select().in("id", ids);
       if (chatData.error) throw chatData.error;
 
       //get users data
 
-      //TODO: repair
-      let users = [];
+      let chats: Chat[] = [];
       for (let i = 0; i < ids.length; i++) {
         const res = await supabase
           .from("match")
-          .select("user(name, surname)")
-          .contains("chat_id", ids[i])
+          .select("user(name, surname, user_id)")
+          .contains("chat_id", [ids[i]])
           .not("user_id", "eq", supabase.auth.user()?.id);
         if (res.error) throw res.error;
-        else users.push(res.data[0].user);
+        else
+          chats.push({
+            id: chatData.data[i].id,
+            messages: chatData.data[i].messages,
+            user: res.data[0].user,
+          });
       }
+
+      dispatch({ type: loaded, payload: chats });
     } catch (e: any) {
       dispatch({
         type: error,

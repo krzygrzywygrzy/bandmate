@@ -49,7 +49,7 @@ const UserCard: React.FC<Props> = ({ user, likeable }) => {
           {user.description}
         </div>
         <div className="mb-2">
-          {user.instruments.map((instrument, index) => {
+          {user.instruments!.map((instrument, index) => {
             return (
               <SelectiveButton label={instrument} key={index} selected={true} />
             );
@@ -58,7 +58,7 @@ const UserCard: React.FC<Props> = ({ user, likeable }) => {
         {likeable && <div className="border-b mb-2"></div>}
         {likeable && (
           <div className="mb-2">
-            {user.genres.map((genre, index) => {
+            {user.genres!.map((genre, index) => {
               return (
                 <SelectiveButton label={genre} key={index} selected={true} />
               );

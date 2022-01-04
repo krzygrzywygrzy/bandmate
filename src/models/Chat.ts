@@ -2,8 +2,9 @@ import Message from "./Message";
 import User from "./User";
 
 interface Chat {
+  id: number;
   user: User;
-  message: Message;
+  messages: Message[];
 }
 
 export default Chat;
