@@ -32,6 +32,11 @@ code {
   @apply 2xl:w-siteWidth2xl xl:w-siteWidthxl lg:w-siteWithLarge md:w-siteWithMedium px-4 md:px-0;
 }
 
+.navbar {
+  height: calc(10vh - 2rem);
+  @apply flex justify-between items-center;
+}
+
 .purple-button {
   transition: background 0.25s ease-in-out;
   @apply bg-purple-600 py-2 px-4 text-white text-center mr-4 font-semibold hover:bg-purple-800 cursor-pointer rounded;
@@ -103,7 +108,19 @@ code {
   height: 90vh;
 }
 
+.chat-message-section {
+}
+
 .like-button {
   transition: all 0.25s ease-in-out;
   @apply mr-4 p-2 cursor-pointer rounded-full border-white border hover:border-gray-300;
+}
+
+.grow-horizontally {
+  flex: 2 2;
+}
+
+.chat-button {
+  transition: background 0.25s ease-in-out;
+  @apply text-purple-600 hover:text-white hover:bg-purple-600 py-2 px-2 rounded;
 }

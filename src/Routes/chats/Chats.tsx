@@ -29,7 +29,7 @@ const Chats: React.FC<Props> = ({ chat_id }) => {
             );
           })}
         </div>
-        <div className="col-span-4 chat">
+        <div className="col-span-4 chat border-r pr-4">
           {chat_id ? (
             <Chat chat_id={parseInt(chat_id)} />
           ) : (
