@@ -23,6 +23,7 @@ const Chat: React.FC<Props> = ({ chat_id }) => {
   const chat = useAppSelector((state) =>
     state.chats.data!.filter((el) => el.id === chat_id)
   );
+
   return (
     <div className="flex flex-col h-full">
       <div className="py-4 border-b">

@@ -34,16 +34,14 @@ const Router: React.FC = () => {
         if (res.error) {
           //handle error
         } else if (res.data) {
-          if (res.data.length != 0) {
+          if (res.data.length !== 0) {
             const chats = res.data[0].chat_id;
 
             chatSubscription = supabase
               .from(`chat`)
               .on("UPDATE", (payload) => {
                 if (chats.includes(payload.new.id)) {
-                  dispatch(
-                    updateChatsThunk(payload.new.messages, payload.new.id)
-                  );
+                  dispatch(updateChatsThunk());
                 }
               })
               .subscribe();
