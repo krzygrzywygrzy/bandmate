@@ -3,13 +3,13 @@ import { RootState } from "../store";
 import { load, loaded, error } from "../reducers/chatsReducer";
 import { supabase } from "../../supabaseClient";
 import Chat from "../../models/Chat";
+import Message from "../../models/Message";
 
 export const sendMessageThunk = (
   content: string,
   chat: number
 ): ThunkAction<Promise<undefined | string>, RootState, unknown, AnyAction> => {
-  return async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
-    //TODO: implement
+  return async (_dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
     let { error } = await supabase.rpc("append_message", {
       message: {
         content,
@@ -23,7 +23,23 @@ export const sendMessageThunk = (
   };
 };
 
-export const updateChatsThunk = () => {};
+export const updateChatsThunk = (
+  messages: Message[],
+  id: number
+): ThunkAction<void, RootState, unknown, AnyAction> => {
+  return async (
+    dispatch: ThunkDispatch<RootState, unknown, AnyAction>,
+    getState: () => RootState
+  ) => {
+    let chat = {
+      ...getState().chats.data!.filter((chat) => chat.id === id)[0],
+    };
+    chat.messages = messages;
+
+    let newChats = getState().chats.data!.filter((c) => c.id !== id);
+    dispatch({ type: loaded, payload: newChats });
+  };
+};
 
 export const chatsLoadThunk = (): ThunkAction<
   void,
@@ -39,11 +55,12 @@ export const chatsLoadThunk = (): ThunkAction<
       const chatList = await supabase
         .from("match")
         .select("chat_id")
-        .eq("user_id", supabase.auth.user()?.id);
+        .eq("user_id", supabase.auth.user()?.id)
+        .single();
       if (chatList.error) throw chatList.error;
 
       //get chats data
-      const ids = chatList.data[0].chat_id;
+      const ids = chatList.data.chat_id;
       const chatData = await supabase.from("chat").select().in("id", ids);
       if (chatData.error) throw chatData.error;
 
@@ -55,13 +72,14 @@ export const chatsLoadThunk = (): ThunkAction<
           .from("match")
           .select("user(name, surname, user_id)")
           .contains("chat_id", [ids[i]])
-          .not("user_id", "eq", supabase.auth.user()?.id);
+          .not("user_id", "eq", supabase.auth.user()?.id)
+          .single();
         if (res.error) throw res.error;
         else
           chats.push({
             id: chatData.data[i].id,
             messages: chatData.data[i].messages,
-            user: res.data[0].user,
+            user: res.data.user,
           });
       }
 

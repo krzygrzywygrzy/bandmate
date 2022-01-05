@@ -10,7 +10,7 @@ import Profile from "./profile/Profile";
 import { RealtimeSubscription } from "@supabase/supabase-js";
 import Chats from "./chats/Chats";
 import { useAppDispatch } from "../store/hooks";
-import { chatsLoadThunk } from "../store/actions/chatActions";
+import { chatsLoadThunk, updateChatsThunk } from "../store/actions/chatActions";
 
 const Router: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -35,12 +35,16 @@ const Router: React.FC = () => {
           //handle error
         } else if (res.data) {
           if (res.data.length != 0) {
-            const chats = res.data[0].chat_id.toString();
+            const chats = res.data[0].chat_id;
 
             chatSubscription = supabase
-              .from(`chat:id=in.(${chats})`)
+              .from(`chat`)
               .on("UPDATE", (payload) => {
-                console.log(payload);
+                if (chats.includes(payload.new.id)) {
+                  dispatch(
+                    updateChatsThunk(payload.new.messages, payload.new.id)
+                  );
+                }
               })
               .subscribe();
           }
