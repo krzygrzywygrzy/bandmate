@@ -4,6 +4,15 @@ import { load, loaded, error } from "../reducers/chatsReducer";
 import { supabase } from "../../supabaseClient";
 import Chat from "../../models/Chat";
 
+export const sendMessageThunk = (
+  message: string,
+  chat: number
+): ThunkAction<Promise<void | Error>, RootState, unknown, AnyAction> => {
+  return async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
+    //TODO: implement
+  };
+};
+
 export const chatsLoadThunk = (): ThunkAction<
   void,
   RootState,

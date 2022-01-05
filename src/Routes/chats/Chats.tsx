@@ -18,7 +18,7 @@ const Chats: React.FC<Props> = ({ chat_id }) => {
   return (
     <AuthWrapper>
       <div className="grid grid-cols-5 mt-8 h-full">
-        <div className="border-r mr-4 pr-4 h-full">
+        <div className="border-r  mr-4 pr-4 h-full">
           {chats.data.map((chat) => {
             return (
               <ChatCard

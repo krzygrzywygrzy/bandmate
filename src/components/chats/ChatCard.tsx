@@ -12,13 +12,13 @@ const ChatCard: React.FC<Props> = ({ chat, current }) => {
 
   return (
     <div
-      className={`flex items-center w-full border-2  py-2 cursor-pointer p-2 rounded ${
-        current ? " border-purple-500" : "border-white"
+      className={`flex items-center justify-center md:justify-start w-full cursor-pointer md:p-2 p-1 rounded ${
+        current ? " bg-gray-100" : ""
       }`}
       onClick={() => setLocation(`/chats/${chat.id}`)}
     >
-      <div className="h-10 w-10 rounded-full bg-gray-300"></div>
-      <div className="ml-2">
+      <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gray-300"></div>
+      <div className="ml-2 hidden md:block truncate overflow-hidden">
         <p>
           {chat.user.name} {chat.user.surname}
         </p>
