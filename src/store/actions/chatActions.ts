@@ -5,13 +5,25 @@ import { supabase } from "../../supabaseClient";
 import Chat from "../../models/Chat";
 
 export const sendMessageThunk = (
-  message: string,
+  content: string,
   chat: number
-): ThunkAction<Promise<void | Error>, RootState, unknown, AnyAction> => {
+): ThunkAction<Promise<undefined | string>, RootState, unknown, AnyAction> => {
   return async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>) => {
     //TODO: implement
+    let { error } = await supabase.rpc("append_message", {
+      message: {
+        content,
+        user_id: supabase.auth.user()!.id,
+        sent: Date.now(),
+      },
+      chat,
+    });
+
+    if (error) return error.message;
   };
 };
+
+export const updateChatsThunk = () => {};
 
 export const chatsLoadThunk = (): ThunkAction<
   void,

@@ -27,7 +27,7 @@ const HomeSwiping: React.FC = () => {
     <main>
       {musicians.data.length > 0 ? (
         <div className=" flex">
-          <div className="w-96">
+          <div className="w-96 mx-auto">
             <UserCard user={musicians.data[0]} likeable={true} />
           </div>
           {/* {musicians.data.length > 1 && (
@@ -48,7 +48,7 @@ const HomeSwiping: React.FC = () => {
           </div> */}
         </div>
       ) : (
-        <div>
+        <div className="mx-auto">
           <span className="text-3xl font-semibold">It is all for now</span>
           <br />
           <span>you can still come back later...</span>

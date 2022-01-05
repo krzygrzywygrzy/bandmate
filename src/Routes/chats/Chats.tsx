@@ -12,7 +12,7 @@ const Chats: React.FC<Props> = ({ chat_id }) => {
   const chats = useAppSelector((state) => state.chats);
 
   if (!chats.data) {
-    return <div>Loading....</div>;
+    return <div className="site-container">Loading....</div>;
   }
 
   return (

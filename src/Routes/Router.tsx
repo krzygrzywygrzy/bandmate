@@ -40,7 +40,7 @@ const Router: React.FC = () => {
             chatSubscription = supabase
               .from(`chat:id=in.(${chats})`)
               .on("UPDATE", (payload) => {
-                //TODO: dispatch accurate acition
+                console.log(payload);
               })
               .subscribe();
           }
